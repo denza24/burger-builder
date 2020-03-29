@@ -1,0 +1,62 @@
+.Burger
+{
+    width: 100%;
+    margin: auto;
+    height: 50vh;
+    text-align: center;
+    font-weight: bold;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+@media (min-width: 400px){
+   
+   .Burger{ 
+       width: 80%;
+}
+
+}
+@media (min-width: 600px)
+{
+    .Burger{
+        width: 400px;
+    }
+}
+/* @media (min-width: 300px)
+{
+    .Burger{
+        width: 80%;
+        height: 300px;
+    }
+}
+@media (min-width: 400px)
+{
+    .Burger{
+        width: 80%;
+        height: 400px;
+    }
+}
+@media (min-width: 500px)
+{
+    .Burger{
+        width: 80%;
+        height: 500px;
+    }
+}
+@media (min-width: 600px)
+{
+
+    .Burger{
+        width: 80%;
+        height: 600px;
+    }
+
+}
+@media (min-width: 700px)
+{
+
+    .Burger{
+        width: 600px;
+        height: 750px;
+    }
+
+} */
