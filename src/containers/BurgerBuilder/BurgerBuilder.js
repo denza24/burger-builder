@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+
 import Wrapper from '../../hoc/Wrapper';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Backdrop from '../../components/UI/Backdrop/Backdrop';
 
 const INGREDIENTS_PRICE = {
 
@@ -22,7 +26,9 @@ class BurgerBuilder extends Component {
             salad: 0
 
         },
-        totalPrice: 3
+        totalPrice: 3,
+        purchasable: false,
+        ordering: false
     };
 
     AddIngredientHandler = (type) => {
@@ -40,6 +46,8 @@ class BurgerBuilder extends Component {
 
         //setState
         this.setState({ totalPrice: newPrice, ingredients: updatedIngr });
+        this.UpdatePurchasableState(updatedIngr);
+
     }
     RemoveIngredientHandler = (type) => {
         let oldCount = this.state.ingredients[type];
@@ -59,8 +67,34 @@ class BurgerBuilder extends Component {
         //setState
         this.setState({ totalPrice: newPrice, ingredients: updatedIngr });
 
+        this.UpdatePurchasableState(updatedIngr);
 
+    }
+    //purchasable = true when sum(ingredients) > 0
+    UpdatePurchasableState = (ingredients) => {
 
+        //uzimamo array keys-a
+        let ingrArray = Object.keys(ingredients);
+        //
+        let sumArray = ingrArray.map(ingrString => {
+
+            return ingredients[ingrString];
+        });
+        let sum = sumArray.reduce((sum, el) => {
+            return sum + el;
+        }, 0);
+
+        this.setState({ purchasable: sum > 0 });
+
+    }
+    OrderHandler = () => {
+        this.setState({ ordering: true });
+    }
+    OrderCancelHandler = () => {
+        this.setState({ ordering: false });
+    }
+    OrderContinueHandler = () => {
+        alert('Order continue!');
     }
     render() {
 
@@ -75,12 +109,20 @@ class BurgerBuilder extends Component {
         return (
 
             <Wrapper>
+                <Backdrop show={this.state.ordering} click={this.OrderCancelHandler} />
+                <Modal show={this.state.ordering}>
+                    <OrderSummary ingredients={this.state.ingredients}
+                        orderCanceled={this.OrderCancelHandler}
+                        orderContinued={this.OrderContinueHandler} />
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     addIngredient={this.AddIngredientHandler}
                     removeIngredient={this.RemoveIngredientHandler}
                     disabled={disabledInfo}
-                    totalPrice={this.state.totalPrice} />
+                    totalPrice={this.state.totalPrice}
+                    purchasable={this.state.purchasable}
+                    order={this.OrderHandler} />
 
             </Wrapper>
 
