@@ -1,0 +1,27 @@
+.BuildControls {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+@media (min-width: 500px){
+
+.BuildControls{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+}
+
+@media (min-width:700px){
+    
+    .BuildControls{
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+}

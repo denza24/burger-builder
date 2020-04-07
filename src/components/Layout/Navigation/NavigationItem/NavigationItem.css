@@ -1,0 +1,44 @@
+.NavigationItem{
+
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.NavigationItem a{
+
+    padding: 16px 10px;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    color: brown;
+    font-size: 20px;
+    box-sizing: border-box;
+
+}
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active{
+    color: rgb(140, 202, 231);
+
+}
+@media (min-width: 500px){
+    
+    .NavigationItem{
+        height: 100%;
+        width: auto;
+    }
+
+    .NavigationItem a{
+
+        color: white;
+    }
+    .NavigationItem a:hover,
+    .NavigationItem a:active,
+    .NavigationItem a.active{
+        background-color: rgba(204, 69, 69, 0.685);
+        color: white;
+        border-bottom: 4px solid rgb(161, 235, 235);
+    }
+}

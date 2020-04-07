@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import Wrapper from '../../hoc/Wrapper';
 import Burger from '../../components/Burger/Burger';
-import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
+import { Builder } from '../../components/Builder/Builder';
 
 const INGREDIENTS_PRICE = {
 
@@ -113,10 +113,12 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.ordering}>
                     <OrderSummary ingredients={this.state.ingredients}
                         orderCanceled={this.OrderCancelHandler}
-                        orderContinued={this.OrderContinueHandler} />
+                        orderContinued={this.OrderContinueHandler}
+                        totalPrice={this.state.totalPrice} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
-                <BuildControls
+
+                <Builder
                     addIngredient={this.AddIngredientHandler}
                     removeIngredient={this.RemoveIngredientHandler}
                     disabled={disabledInfo}

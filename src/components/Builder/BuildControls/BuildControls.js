@@ -2,6 +2,7 @@ import React from 'react'
 
 import BuildControl from './BuildControl/BuildControl';
 import classes from './BuildControls.module.css';
+import Aux from '../../../hoc/Wrapper';
 
 const controls = [
 
@@ -18,7 +19,6 @@ const BuildControls = (props) => {
 
 
         <div className={classes.BuildControls}>
-            <div>Total Price: <strong>{props.totalPrice.toFixed(2)}</strong></div>
             {controls.map(ctrl => {
 
                 return <BuildControl
@@ -29,13 +29,8 @@ const BuildControls = (props) => {
                     disabled={props.disabled[ctrl.type]} />
             })}
 
-            <button
-                disabled={!props.purchasable}
-                className={classes.OrderButton}
-                onClick={props.order}>
-                ORDER NOW </button>
-
         </div>
+
     );
 
 

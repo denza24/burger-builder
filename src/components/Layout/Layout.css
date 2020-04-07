@@ -1,3 +1,11 @@
 .Content{
-    margin: 16px;
+    margin-top: 10vh;
+    height: 90vh;
+    
+}
+@media (min-width: 700px){
+
+    .Content{
+        display: flex;
+    }
 }
